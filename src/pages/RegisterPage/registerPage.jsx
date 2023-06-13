@@ -21,13 +21,13 @@ export function RegisterPage() {
       </form>
       {
         typeUserRegister === 'teacher'?
-        <RegisterForm titleForm='Docente'/>:
+        <RegisterForm titleForm='Docente' collection='teacher'></RegisterForm>:
         typeUserRegister === 'student'?
-        <RegisterForm titleForm='Estudiante'/>:
+        <RegisterForm titleForm='Estudiante' collection='student'></RegisterForm>:
         typeUserRegister === 'parent'?
-        <RegisterForm titleForm='Padre de Familia'/>:
+        <RegisterForm titleForm='Padre de Familia' collection='parents'></RegisterForm>:
         typeUserRegister === 'admin'?
-        <RegisterForm titleForm='Administrador'/>:
+        <RegisterForm titleForm='Administrador' collection='admin'></RegisterForm>:
         <></>
       }
     </>

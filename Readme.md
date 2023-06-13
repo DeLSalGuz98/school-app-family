@@ -12,9 +12,10 @@ Esta aplicacion web esta desarrollado para la institucion Santa Rosa de Anta, el
 ## Sprint 1 - Registro de usuarios y envido de mensajes
 **_Fecha Inicio: 12/06/2023_**
 * [x] Registrar Docentes
-* [ ] Registrar Estudiante
-* [ ] Registrar Padres de Familia
-* [ ] Registrar Administrador
+* [x] Registrar Estudiante
+* [x] Registrar Padres de Familia
+* [x] Registrar Administrador
+* [ ] visualizar perfil
 * [ ] Mandar Mensajes
 * [ ] Recibir Mensajes
 * [ ] Responder Mensajes
