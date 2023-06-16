@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { RegisterForm } from "../../components/registerForm/registerForm"
-import { Link, Route, Router, Switch } from "wouter";
+import { RegisterForm } from "../../components/registerForm/registerForm";
 
 export function RegisterPage() {
-  const [typeUserRegister, setTypeUserRegister] = useState('teacher')
+  const [typeUserRegister, setTypeUserRegister] = useState('teacher');
   const handleChange = (e)=>{
     const {value} = e.target;
     setTypeUserRegister(value);

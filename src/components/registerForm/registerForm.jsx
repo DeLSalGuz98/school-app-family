@@ -1,9 +1,10 @@
 import { useState } from "react";
 //resources
-import { Input } from "../inputs/inputs";
-import { saveData } from "../../services/saveFirebase";
+import { Input, InputSubmit } from "../inputs/inputs";
+import { saveDataId } from "../../services/saveFirebase";
+import { createUser } from "../../services/authFirebase";
 
-export function RegisterForm({titleForm, collection, children}) {
+export function RegisterForm({titleForm, collection}) {
   const dataNewUser = {
     'name':'',
     'lastname':'',
@@ -20,26 +21,36 @@ export function RegisterForm({titleForm, collection, children}) {
   }
   const handleSubmit = async(e)=>{
     e.preventDefault();
-    const res = await saveData(collection, dataUser);
+    const data = {
+      'name': dataUser.name,
+      'lastname': dataUser.lastname,
+      'phone': dataUser.phone,
+      'sex': dataUser.sex,
+      'email': dataUser.email,
+      'permissions': dataUser.permissions
+    }
+    const newUser = await createUser(dataUser.email, dataUser.password);
+    const res = await saveDataId('user', newUser.uid, data);
     console.log(res)
+    setDataUser(dataNewUser)
   }
   return (
     <form onSubmit={handleSubmit}>
       <span>Registrar {titleForm}</span>
-      <Input type='text' id='name' name='Nombres' handleChange={handleChange} />
-      <Input type='text' id='lastname' name='Apellido' handleChange={handleChange} />
-      <Input type='text' id='phone' name='Telefono' handleChange={handleChange} />
+      <Input type='text' id='name' name='Nombres' handleChange={handleChange} value={dataUser.name}/>
+      <Input type='text' id='lastname' name='Apellido' handleChange={handleChange} value={dataUser.lastname}/>
+      <Input type='text' id='phone' name='Telefono' handleChange={handleChange} value={dataUser.phone}/>
       <div>
         <span>Sexo</span>
         <label htmlFor="man">
-          <input type="radio" name="sex" id="man" value="Hombre" onChange={handleChange}/>Hombre
+          <input type="radio" name="sex" id="man" value="man" onChange={handleChange}/>Hombre
         </label>
         <label htmlFor="woman">
-          <input type="radio" name="sex" id="woman" value="Mujer" onChange={handleChange}/>Mujer
+          <input type="radio" name="sex" id="woman" value="woman" onChange={handleChange}/>Mujer
         </label>
       </div>
-      <Input type='email' id='email' name='Correo' handleChange={handleChange} />
-      <Input type='password' id='password' name='Contraseña' handleChange={handleChange} />
+      <Input type='email' id='email' name='Correo' handleChange={handleChange} value={dataUser.email}/>
+      <Input type='password' id='password' name='Contraseña' handleChange={handleChange} value={dataUser.password}/>
       {
         collection === 'student'?
         <>
@@ -74,7 +85,7 @@ export function RegisterForm({titleForm, collection, children}) {
         </>
         :<></>
       }
-      <input type="submit" value="Register" />
+      <InputSubmit value="Register" />
     </form>
   )
 }
