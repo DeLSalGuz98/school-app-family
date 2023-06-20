@@ -6,8 +6,8 @@ export function Input({type,id,name, handleChange, value}) {
     </div>
   )
 }
-export function InputSubmit({value}) {
+export function InputSubmit({value, setDisabled = false}) {
   return(
-    <input type="submit" value={value} />
+    <input type="submit" value={value} disabled={setDisabled}/>
   )
 }

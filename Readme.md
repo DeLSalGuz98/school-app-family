@@ -15,7 +15,7 @@ Esta aplicacion web esta desarrollado para la institucion Santa Rosa de Anta, el
 * [x] Registrar Estudiante
 * [x] Registrar Padres de Familia
 * [x] Registrar Administrador
-* [ ] visualizar perfil
+* [x] visualizar perfil
 * [ ] Mandar Mensajes
 * [ ] Recibir Mensajes
 * [ ] Responder Mensajes

@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
+//resources
 import { RegisterForm } from "../../components/registerForm/registerForm";
+import { observer } from "../../services/authFirebase";
+import { RegisterStudent } from "../../components/registerForm/registerStudent";
 
 export function RegisterPage() {
+  const [location, setLocation] = useLocation()
   const [typeUserRegister, setTypeUserRegister] = useState('teacher');
+  useEffect(()=>{
+    const res = observer();
+    if(res === null){
+      setLocation('/')
+    }
+  });
   const handleChange = (e)=>{
     const {value} = e.target;
     setTypeUserRegister(value);
@@ -22,7 +33,7 @@ export function RegisterPage() {
         typeUserRegister === 'teacher'?
         <RegisterForm titleForm='Docente' collection='teacher'></RegisterForm>:
         typeUserRegister === 'student'?
-        <RegisterForm titleForm='Estudiante' collection='student'></RegisterForm>:
+        <RegisterStudent titleForm='Estudiante' collection='student'></RegisterStudent>:
         typeUserRegister === 'parent'?
         <RegisterForm titleForm='Padre de Familia' collection='parents'></RegisterForm>:
         typeUserRegister === 'admin'?

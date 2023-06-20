@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, setPersistence, browserLocalPersistence} from "firebase/auth";
 import { auth } from "../firebase/conection";
 
 export const createUser = async(email, password)=>{
@@ -12,6 +12,7 @@ export const createUser = async(email, password)=>{
 
 export const authUser = async({email, password})=>{
   try {
+    await setPersistence(auth, browserLocalPersistence  )
     const {user} = await signInWithEmailAndPassword(auth, email, password);
     return user
   } catch (error) {
@@ -22,7 +23,7 @@ export const authUser = async({email, password})=>{
 export const observer = ()=>{
   const user = auth.currentUser
   if (user) {
-    return user.uid
+    return user
   }else{
     return user
   }

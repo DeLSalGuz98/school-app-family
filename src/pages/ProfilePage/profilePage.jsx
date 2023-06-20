@@ -5,11 +5,10 @@ import { exitSession, observer } from "../../services/authFirebase"
 import { getOneDoc } from "../../services/getDataFirebase"
 
 //context
-import { ShowMenuContext } from "../../context/showMenuContext"
 import { IdUserContext } from "../../context/idUserContext"
 
 export function ProfilePage({id}) {
-  const {setShowMenu} = useContext(IdUserContext)
+  const {setIdUser} = useContext(IdUserContext)
   const [location, setLocation] = useLocation()
   const [user, setUser] = useState({})
   useEffect(()=>{
@@ -17,7 +16,7 @@ export function ProfilePage({id}) {
     if(res === null){
       setLocation('/')
     }else{
-      getDataUser(res);
+      getDataUser(res.uid);
     }
   },[])
   const getDataUser = async(userId)=>{
@@ -27,7 +26,7 @@ export function ProfilePage({id}) {
   const logOut = async()=>{
     const res = await exitSession()
     if(res.message && res.message === 'log-out'){
-      setShowMenu('')
+      setIdUser('')
       setLocation('/')
     }
   }

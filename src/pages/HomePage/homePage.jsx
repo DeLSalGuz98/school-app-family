@@ -18,9 +18,8 @@ export function HomePage() {
   const [credentials, setCredentials] = useState(dataForm)
   useEffect(()=>{
     const res = observer();
-    console.log(res)
     if(res !== null){
-      setLocation(`/profile/${res}`);
+      setLocation(`/profile/${res.uid}`);
     }
   },[]);
   const handleChange = (e)=>{
@@ -32,8 +31,11 @@ export function HomePage() {
     const res = await authUser(credentials);
     if(res.uid){
       setIdUser(res.uid)
+      setLocation(`/profile/${res.uid}`)
+    }else{
+      alert('Hubo un error con las credenciales')
+      console.log(res)
     }
-    setLocation(`/profile/${res.uid}`)
     setCredentials(dataForm);
   }
   return(
