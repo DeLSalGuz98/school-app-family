@@ -4,8 +4,8 @@ import { db } from "../firebase/conection";
 
 export const saveData = async(nameCollection, data)=>{
   try {
-    const res = await addDoc(collection(db, nameCollection), data);
-    return res;
+    await addDoc(collection(db, nameCollection), data);
+    return {'message': 'success'};
   } catch (error) {
     return error;
   }
@@ -14,7 +14,7 @@ export const saveData = async(nameCollection, data)=>{
 export const saveDataId = async (nameCollection, id, data)=>{
   try {
     await setDoc(doc(db, nameCollection, id), data);
-    return {'message': 'user created succesfully'};
+    return {'message': 'user created successfully'};
   } catch (error) {
     return error;
   }

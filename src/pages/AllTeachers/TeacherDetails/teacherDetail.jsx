@@ -6,18 +6,14 @@ import { getOneDoc, getMultipeDataWithCondition } from "../../../services/getDat
 import { RegisterCourse } from "../../../components/registerCourse/registerCourse"
 import { deleteOneDoc } from "../../../services/deleteDataFirebase"
 
-//context
-import { IdUserContext } from "../../../context/idUserContext"
 
 export function TeacherDetail({id}) {
-//   const {setIdUser} = useContext(IdUserContext)
   const [location, setLocation] = useLocation()
   const [user, setUser] = useState({})
   const [hiddeForm, setHiddeForm] = useState(true)
   const [listCourses, setListCourses] = useState([]);
   useEffect(()=>{
     const res = observer();
-    console.log(res)
     if(res === null){
       setLocation('/')
     }else{
@@ -92,7 +88,7 @@ export function TeacherDetail({id}) {
       {
         hiddeForm?<></>:
         <div>
-          <RegisterCourse idTeacher={id}/>
+          <RegisterCourse idTeacher={id} nameTeacher={`${user.name} ${user.lastname}`}/>
           <button onClick={closeForm}>Cerrar</button>
         </div>
       }

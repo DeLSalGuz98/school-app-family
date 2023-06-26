@@ -6,9 +6,11 @@ import { getOneDoc } from "../../services/getDataFirebase"
 
 //context
 import { IdUserContext } from "../../context/idUserContext"
+import { StudentContext } from "../../context/studentContext"
 
 export function ProfilePage({id}) {
-  const {setIdUser} = useContext(IdUserContext)
+  const {idUser, setIdUser} = useContext(IdUserContext)
+  const { student, setStudent } = useContext(StudentContext)
   const [location, setLocation] = useLocation()
   const [user, setUser] = useState({})
   useEffect(()=>{
@@ -26,7 +28,8 @@ export function ProfilePage({id}) {
   const logOut = async()=>{
     const res = await exitSession()
     if(res.message && res.message === 'log-out'){
-      setIdUser('')
+      setIdUser({})
+      setStudent({})
       setLocation('/')
     }
   }
@@ -35,6 +38,11 @@ export function ProfilePage({id}) {
       <h2>{user.name} {user.lastname}</h2>
       <p>telf: {user.phone}</p>
       <p>correo: {user.email}</p>
+      {
+        idUser.permissions === 'parents'?
+        <p>Hijo(a): {student.name} {student.lastname}</p>
+        :<></>
+      }
       <button onClick={logOut}>Salir de la Cuenta</button>
     </div>
   )

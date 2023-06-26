@@ -1,0 +1,24 @@
+.inputContainer{
+  margin: .5rem 0;
+}
+.input{
+  display: block;
+  width: 100%;
+  padding: 5px;
+  border: solid 1px gray;
+  letter-spacing: .5px;
+  &:focus{
+    outline: solid 1px var(--color-one-white);
+  }
+}
+.submit{
+  margin-top: 10px;
+  width: 100%;
+  padding: 6px 0;
+  border: none;
+  color: #fff;
+  background-color: var(--color-one-white);
+  &:hover{
+    background-color: var(--color-one);
+  }
+}

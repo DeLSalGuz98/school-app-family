@@ -28,3 +28,28 @@ export const getMultipeDataWithCondition = async(collectionName, key, condition,
   })
   return resArray
 }
+
+export const getListTeacherForMessage = async(level, section)=>{
+  const resArray = []
+  const q = await query(collection(db, 'course'), 
+  where( 'grado', '==', level),
+  where( 'seccion', '==', section))
+  const res = await getDocs(q)
+  res.forEach(doc=>{
+    const element = {...doc.data(), id: doc.id}
+    resArray.push(element);
+  })
+  return resArray
+}
+export const getListParentsForMessage = async(level, section)=>{
+  const resArray = []
+  const q = await query(collection(db, 'student'), 
+  where( 'level', '==', level),
+  where( 'section', '==', section))
+  const res = await getDocs(q)
+  res.forEach(doc=>{
+    const element = {...doc.data(), id: doc.id}
+    resArray.push(element);
+  })
+  return resArray
+}

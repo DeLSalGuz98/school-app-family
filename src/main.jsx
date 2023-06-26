@@ -5,9 +5,12 @@ import './index.css'
 
 //context
 import { IdUserContextProvider } from './context/idUserContext.jsx'
+import { StudentContextProvider } from './context/studentContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <IdUserContextProvider>
-    <App />
+    <StudentContextProvider>
+      <App />
+    </StudentContextProvider>
   </IdUserContextProvider>
 )

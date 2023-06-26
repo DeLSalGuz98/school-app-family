@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './registerForm.css';
 //resources
 import { Input, InputSubmit } from "../inputs/inputs";
 import { saveDataId, saveData } from "../../services/saveFirebase";
@@ -54,27 +55,23 @@ export function RegisterForm({titleForm, collection}) {
     setAllParents(res)
   }
   return (
-    <div>
-      <span>Registrar {titleForm}</span>
+    <div className="registerContainer">
+      <form className="registerForm" onSubmit={handleSubmit}>
+      <p className="registerTitle">Registrar {titleForm}</p>
         <Input type='text' id='name' name='Nombres' handleChange={handleChange} value={dataUser.name}/>
         <Input type='text' id='lastname' name='Apellido' handleChange={handleChange} value={dataUser.lastname}/>
         <Input type='text' id='phone' name='Telefono' handleChange={handleChange} value={dataUser.phone}/>
-        <div>
-          <span>Sexo</span>
-          <label htmlFor="man">
-            <input type="radio" name="sex" id="man" value="man" onChange={handleChange}/>Hombre
+        <div className="radioContainer">
+          <p className="radioLabel">Sexo</p>
+          <label className="radioText" htmlFor="man">
+            <input className="radioInput" type="radio" name="sex" id="man" value="man" onChange={handleChange}/>Hombre
           </label>
-          <label htmlFor="woman">
-            <input type="radio" name="sex" id="woman" value="woman" onChange={handleChange}/>Mujer
+          <label className="radioText" htmlFor="woman">
+            <input className="radioInput" type="radio" name="sex" id="woman" value="woman" onChange={handleChange}/>Mujer
           </label>
         </div>
         <Input type='email' id='email' name='Correo' handleChange={handleChange} value={dataUser.email}/>
         <Input type='password' id='password' name='Contraseña' handleChange={handleChange} value={dataUser.password}/>
-        {
-          collection === 'teacher'?
-          <RegisterCourse/>:<></>
-        }
-      <form onSubmit={handleSubmit}>
         <InputSubmit value="Register" />
       </form>
     </div>

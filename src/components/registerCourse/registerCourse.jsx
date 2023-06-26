@@ -3,7 +3,7 @@ import { useState } from "react"
 import { saveData } from "../../services/saveFirebase"
 import { InputSubmit } from "../inputs/inputs"
 
-export function RegisterCourse({idTeacher}) {
+export function RegisterCourse({idTeacher, nameTeacher}) {
   const [disabledInput, setDisabledInput] = useState(false)
   const [course, setCourse] = useState({
     'curso':'',
@@ -29,7 +29,8 @@ export function RegisterCourse({idTeacher}) {
         'curso':course.curso,
         'grado': course.grado,
         'seccion': e,
-        'idTeacher':idTeacher
+        'idTeacher':idTeacher,
+        'nameTeacher': nameTeacher
       }
       await saveData('course', dataCourse)
       setDisabledInput(true)

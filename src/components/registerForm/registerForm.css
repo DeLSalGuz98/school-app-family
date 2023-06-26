@@ -1,0 +1,31 @@
+.registerContainer{
+  padding: 1rem;
+}
+.registerForm{
+  border: solid 1px var(--color-tree);
+  padding: 2rem 1rem;
+}
+.registerTitle{
+  font-size: 1.3rem;
+  text-align: center;
+}
+.radioLabel{
+  margin: 5px 0;
+}
+.radioText{
+  display: inline-block;
+  width: 6rem;
+  margin-left: 3rem;
+}
+.radioInput{
+  margin-right: 5px;
+  position: relative;
+  top: 2px;
+  background-color: #fff;
+  color: var(--color-one-white);
+  font: inherit;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid var(--color-tree);
+  border-radius: 50%;
+}
