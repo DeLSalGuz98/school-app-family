@@ -1,0 +1,46 @@
+.profileContainer{
+  padding-top: 5rem;
+}
+.profileCard{
+  border: solid 1px var(--color-tree);
+  width: 80%;
+  height: max-content;
+  margin: 0 10%;
+}
+.profileHeaderCard{
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--color-one-white);
+}
+.profileDescriptionCard{
+  height: 10rem;
+  padding: 10px 10px;
+  &>p{
+    font-size: 1.1rem;
+    margin-top: 5px;
+  }
+  &>button{
+    margin-top: 2rem;
+    width: 100%;
+    bottom: 0;
+    padding: .5rem 0;
+    background-color: var(--color-red);
+    color: #ffffff;
+    border: none;
+    &:hover{
+      background-color: var(--color-two-white);
+    }
+  }
+}
+.profileUserImage{
+  width: 5rem;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 5px;
+}
+.profileUserName{
+  font-size: 2rem;
+  color: #ffffff;
+}

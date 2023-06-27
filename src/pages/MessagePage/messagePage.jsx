@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 import format from 'date-format'
+import './messagePage.css'
 
 //Resources
 import { Message } from "../../components/message/message"
@@ -45,22 +46,22 @@ export function MessagePage(){
   }
   return(
     <div>
-      <button onClick={newMessage}>Enviar Nuevo Mensaje</button>
+      <button className="btnCreateMessage" onClick={newMessage}>Enviar Nuevo Mensaje</button>
       <div>
-        <nav>
-          <button onClick={getSentMessages}>Mensajes Enviados</button>
-          <button onClick={getNewMessages}>Mensajes Nuevos</button>
-          <button>Mensajes Leidos</button>
+        <nav className="btnListContainer">
+          <button className="btnListMessage" onClick={getSentMessages}>Mensajes Enviados</button>
+          <button className="btnListMessage" onClick={getNewMessages}>Mensajes Nuevos</button>
+          <button className="btnListMessage">Mensajes Leidos</button>
         </nav>
-        <div>
+        <div className="containerTableMessage">
           {showTableMessages}
         </div>
       </div>
       {
         message?
-        <div>
+        <div className="viewWindow">
           <Message/>
-          <button onClick={close}>cerrar</button>
+          <button className="btnRed" onClick={close}>cerrar</button>
         </div>:<></>
       }
     </div>

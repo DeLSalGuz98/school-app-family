@@ -1,0 +1,10 @@
+.formTeacherNewCourse{
+  background-color: #ffffff;
+  width: 90%;
+  height: 50%;
+  margin: 3rem 5%;
+  padding: 1rem;
+}
+.formTeacherNewCourseFooter{
+  margin-top: 2rem;
+}

@@ -1,0 +1,23 @@
+.tableMessage{
+  border: solid 1px var(--color-tree);
+  border-collapse: collapse;
+  &>thead{
+    background-color: var(--color-one-white);
+    color: #ffffff;
+    &>tr>th{
+      font-weight: 200;
+      width: 10rem;
+    }
+  }
+  &>tbody>tr{
+    &>td{
+      padding: 5px;
+      &>button{
+        border: none;
+        display: block;
+        width: 100%;
+        margin-top: 5px;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './registerCourse.css'
 //resources
 import { saveData } from "../../services/saveFirebase"
 import { InputSubmit } from "../inputs/inputs"
@@ -42,19 +43,19 @@ export function RegisterCourse({idTeacher, nameTeacher}) {
   //   setListCourses(list)
   // } 
   return(
-    <form onSubmit={saveCourse}>
-      <div>
-        <label htmlFor="curso">Curso:</label>
-          <select required name="curso" id="curso" value={course.curso} onChange={handleChange} disabled={disabledInput?true:false}>
+    <form className="formTeacherNewCourse" onSubmit={saveCourse}>
+      <div className="selectContainer">
+        <label className="selectLabel" htmlFor="curso">Curso:</label>
+          <select className="selectInput" required name="curso" id="curso" value={course.curso} onChange={handleChange} disabled={disabledInput?true:false}>
             <option value="" disabled> -seleccione uno- </option>
             <option value="Matemática">Matemática</option>
             <option value="Comunicación">Comunicación</option>
             <option value="informática">Informática</option>
           </select>
         </div>
-      <div>
-        <label htmlFor="grado">Grado:</label>
-        <select required name="grado" id="grado" value={course.grado} onChange={handleChange} disabled={disabledInput?true:false}>
+      <div className="selectContainer">
+        <label className="selectLabel" htmlFor="grado">Grado:</label>
+        <select className="selectInput" required name="grado" id="grado" value={course.grado} onChange={handleChange} disabled={disabledInput?true:false}>
           <option value="" disabled> -seleccione uno- </option>
           <option value="primero">Primero</option>
           <option value="segundo">Segundo</option>
@@ -64,19 +65,23 @@ export function RegisterCourse({idTeacher, nameTeacher}) {
           <option value="sexto">Sexto</option>
         </select>
       </div>
-      <div>
-        <p>Seccion</p>
-        <label htmlFor="seccion">
-          <input type="checkbox" name="seccion" id="a" value='A' onChange={chooseSection} disabled={disabledInput?true:false}/>A
-        </label>
-        <label htmlFor="seccion">
-          <input type="checkbox" name="seccion" id="b" value='B' onChange={chooseSection} disabled={disabledInput?true:false}/>B
-        </label>
-        <label htmlFor="seccion">
-          <input type="checkbox" name="seccion" id="c" value='C' onChange={chooseSection} disabled={disabledInput?true:false}/>C
-        </label>
+      <div className="chbxContainer">
+        <p className="chbxLabel">Seccion:</p>
+        <div className="chbxInput">
+          <label htmlFor="seccion">
+            <input type="checkbox" name="seccion" id="a" value='A' onChange={chooseSection} disabled={disabledInput?true:false}/>A
+          </label>
+          <label htmlFor="seccion">
+            <input type="checkbox" name="seccion" id="b" value='B' onChange={chooseSection} disabled={disabledInput?true:false}/>B
+          </label>
+          <label htmlFor="seccion">
+            <input type="checkbox" name="seccion" id="c" value='C' onChange={chooseSection} disabled={disabledInput?true:false}/>C
+          </label>
+        </div>
       </div>
-      <InputSubmit value='Añadir Curso' setDisabled={disabledInput?true:false}/>
+      <div className="formTeacherNewCourseFooter">
+        <InputSubmit value='Añadir Curso' setDisabled={disabledInput?true:false}/>
+      </div>
       {/* <input type="button" value="Add Course" onClick={addCourseToList}/> */}
     </form>
   )

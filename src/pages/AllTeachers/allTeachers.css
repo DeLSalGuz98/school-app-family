@@ -1,0 +1,35 @@
+.teachersPage{
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem 1rem 0 1rem;
+  overflow: scroll;
+}
+.tableContainer{
+  border-collapse: collapse;
+  border: solid 1px var(--color-tree);
+}
+.tableHead{
+  background-color: var(--color-one-white);
+  color: #ffffff;
+  &>tr>th{
+    width: max-content;
+    padding: 5px;
+  }
+}
+.tableBody{
+  &>tr{
+    &>td{
+      width: max-content;
+      padding: 5px;
+      &>.btnTable{
+        width: 100%;
+        margin-top: 5px;
+        border: none;
+        padding: 2px;
+      }
+    }
+    &:nth-child(2n){
+      background-color: var(--color-tree-white);
+    }
+  }
+}

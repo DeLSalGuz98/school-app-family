@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
+import './registerPage.css'
 //resources
 import { RegisterForm } from "../../components/registerForm/registerForm";
 import { observer } from "../../services/authFirebase";
@@ -19,10 +20,10 @@ export function RegisterPage() {
     setTypeUserRegister(value);
   }
   return(
-    <>
-      <form>
-        <label htmlFor="typeUser">Seleccione el tipo de usuario que desea registrar</label>
-        <select name="typeUser" id="typeUser" defaultValue='teacher' onChange={handleChange}>
+    <div className="registerPageContainer">
+      <form className="selectContainer">
+        <label className="selectLabel" htmlFor="typeUser">Seleccione el tipo de usuario que desea registrar</label>
+        <select className="selectInput" name="typeUser" id="typeUser" defaultValue='teacher' onChange={handleChange}>
           <option value="teacher">Docente</option>
           <option value="student">Estudiante</option>
           <option value="parent">Padre de Familia</option>
@@ -40,6 +41,6 @@ export function RegisterPage() {
         <RegisterForm titleForm='Administrador' collection='admin'></RegisterForm>:
         <></>
       }
-    </>
+    </div>
   )
 }

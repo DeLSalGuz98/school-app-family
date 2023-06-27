@@ -1,0 +1,60 @@
+.createMessageContainer{
+  background-color: #ffffff;
+  width: 90%;
+  height: max-content;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+.newMessageForm{
+  margin-top: 1rem;
+}
+.affairContainer{
+  margin: 5px 0;
+  &>input{
+    width: 100%;
+    border: solid 1px var(--color-tree);
+    line-height: 2rem;
+    padding: 0 5px;
+    letter-spacing: .5px;
+  }
+}
+.containerContentMessage{
+  padding: 5px;
+  border: solid 1px var(--color-tree);
+}
+.contentMessage{
+  width: 100%;
+  outline: none;
+  padding-top: 5px;
+  height: 10rem;
+  resize: none;
+  border: none;
+}
+.btnMessage{
+  width: 100%;
+  margin-top: 5px;
+  padding: 5px ;
+  background-color: var(--color-one);
+  border: none;
+  color: #ffffff;
+}
+.viewMessage{
+  background-color: #ffffff;
+  width: 90%;
+  padding: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  &>p{
+    margin-top: 10px;
+  }
+  &>.viewMessageContent{
+    margin-top: 10px;
+    height: 10rem;
+    padding: 5px;
+    border: solid 1px var(--color-tree);
+    &>p{
+      margin-top: 10px;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react"
 import format from 'date-format'
+import './tableMessage.css'
 
 //Resources
 import { ViewMessages } from "../message/viewMessage"
@@ -40,7 +41,7 @@ export function TableSentMessages() {
   }
   return(
     <>
-      <table>
+      <table className="tableMessage className={}">
         <thead>
           <tr>
             <th>Fecha</th>
@@ -58,8 +59,8 @@ export function TableSentMessages() {
                   <td>{formatDate}</td>
                   <td>{m.affair}</td>
                   <td>
-                    <button onClick={()=>watchMessage(m)}>Ver</button>
-                    <button onClick={()=>deleteMessage(m.id)}>Eliminar</button>
+                    <button className='btnGreen' onClick={()=>watchMessage(m)}>Ver</button>
+                    <button className='btnRed' onClick={()=>deleteMessage(m.id)}>Eliminar</button>
                   </td>
                 </tr>
               )
@@ -69,9 +70,9 @@ export function TableSentMessages() {
       </table>
       {
         viewMessage?
-        <div>
+        <div className="viewWindow">
           {componentMessages}
-          <button onClick={closeMessage}>Cerrar</button>
+          <button className="btnRed" onClick={closeMessage}>Cerrar</button>
         </div>:<></>
       }
     </>

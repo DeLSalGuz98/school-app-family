@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "wouter"
+import './teacherDetail.css'
 //resources
 import { observer } from "../../../services/authFirebase"
 import { getOneDoc, getMultipeDataWithCondition } from "../../../services/getDataFirebase"
@@ -51,48 +52,49 @@ export function TeacherDetail({id}) {
   }
   //course's list
   return(
-    <div>
-      <div>
+    <div className="teacherDetail">
+      <div className="teacherInfo">
         <h2>{user.name} {user.lastname}</h2>
         <p>telf: {user.phone}</p>
         <p>correo: {user.email}</p>
-        <button onClick={showForm}>Asignar Nuevo curso</button>
+        <button className="btnNewCourse" onClick={showForm}>Asignar Nuevo curso</button>
       </div>
-      <div>
-      <p>lista de cursos </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Curso</th>
-              <th>Nivel</th>
-              <th>Seccion</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
-          {
-            listCourses.map(c=>{
-              return(
-                <tbody key={c.id}>
-                  <tr>
-                    <td>{c.curso}</td>
-                    <td>{c.grado}</td>
-                    <td>{c.seccion}</td>
-                    <td><button onClick={()=>deleteCourse(c.id)}>Eliminar</button></td>
-                  </tr>
-                </tbody>
-              )
-            })
-          }
-        </table>
-      </div>
-      {
-        hiddeForm?<></>:
-        <div>
-          <RegisterCourse idTeacher={id} nameTeacher={`${user.name} ${user.lastname}`}/>
-          <button onClick={closeForm}>Cerrar</button>
+      <div className="listCourses">
+        <p>Lista de Cursos </p>
+        <div className="tableTeacherCourseContainer">
+          <table className="tableTeacherCourses">
+            <thead>
+              <tr>
+                <th>Curso</th>
+                <th>Nivel</th>
+                <th>Seccion</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            {
+              listCourses.map(c=>{
+                return(
+                  <tbody key={c.id}>
+                    <tr>
+                      <td>{c.curso}</td>
+                      <td>{c.grado}</td>
+                      <td>{c.seccion}</td>
+                      <td><button className="btnRed" onClick={()=>deleteCourse(c.id)}>Eliminar</button></td>
+                    </tr>
+                  </tbody>
+                )
+              })
+            }
+          </table>
         </div>
-      }
-      
+        </div>
+        {
+          hiddeForm?<></>:
+          <div className="viewWindow">
+            <RegisterCourse idTeacher={id} nameTeacher={`${user.name} ${user.lastname}`}/>
+            <button className="btnRed" onClick={closeForm}>Cerrar</button>
+          </div>
+        }
     </div>
   )
 }

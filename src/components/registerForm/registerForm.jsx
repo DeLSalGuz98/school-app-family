@@ -57,7 +57,7 @@ export function RegisterForm({titleForm, collection}) {
   return (
     <div className="registerContainer">
       <form className="registerForm" onSubmit={handleSubmit}>
-      <p className="registerTitle">Registrar {titleForm}</p>
+        <p className="registerTitle">Registrar {titleForm}</p>
         <Input type='text' id='name' name='Nombres' handleChange={handleChange} value={dataUser.name}/>
         <Input type='text' id='lastname' name='Apellido' handleChange={handleChange} value={dataUser.lastname}/>
         <Input type='text' id='phone' name='Telefono' handleChange={handleChange} value={dataUser.phone}/>
