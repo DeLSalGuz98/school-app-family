@@ -35,7 +35,11 @@
   display: none;
 }
 .menu{
-  margin-top: 2rem;
+  margin-top: 5rem;
+  padding: 0;
+  &>li{
+    list-style: none;
+  }
 }
 .menuItem{
   line-height: 3rem;
@@ -109,5 +113,14 @@
       height: 20px;
       margin-right: 5px;
     }
+  }
+}
+@media screen and (min-width: 600px) {
+  .menuContainer{
+    width: 20vw;
+    box-shadow: 5px 0px 10px #000;
+  }
+  .btnMenu{
+    float: left;
   }
 }

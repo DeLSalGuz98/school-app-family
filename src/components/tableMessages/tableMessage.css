@@ -1,4 +1,4 @@
-.tableMessage{
+/* .tableMessage{
   border: solid 1px var(--color-tree);
   border-collapse: collapse;
   &>thead{
@@ -19,5 +19,37 @@
         margin-top: 5px;
       }
     }
+  }
+} */
+.tableMessage {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableMessage th,
+.tableMessage td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.tableMessage td button{
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.tableMessage th {
+  background-color: #f5f5f5;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .tableMessage {
+    width: 100%;
   }
 }

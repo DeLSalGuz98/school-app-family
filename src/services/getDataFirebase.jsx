@@ -53,3 +53,26 @@ export const getListParentsForMessage = async(level, section)=>{
   })
   return resArray
 }
+// export const getListParentsAndTeachersForMessage = async()=>{
+//   const resArray = []
+//   const q = await query(collection(db, 'user'), 
+//   where( 'permissions', '==', 'parents'),
+//   where( 'permisions', '==', 'teacher'))
+//   const res = await getDocs(q)
+//   res.forEach(doc=>{
+//     const element = {...doc.data(), id: doc.id}
+//     resArray.push(element);
+//   })
+//   return resArray
+// }
+
+export const getMessagesToUser = async(idUser, statusMessage)=>{
+  const resArray = []
+  const q = await query(collection(db, 'messages'), where('toUser','==', idUser), where('statusMessage', '==', statusMessage))
+  const res = await getDocs(q)
+  res.forEach(doc=>{
+    const element = {...doc.data(), id: doc.id}
+    resArray.push(element);
+  })
+  return resArray
+}

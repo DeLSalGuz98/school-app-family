@@ -1,4 +1,4 @@
-export function ViewMessages({objMessage}) {
+export function ViewMessages({objMessage, children}) {
   return(
     <div className="viewMessage">
       <p>De: {objMessage.fromUserName}</p>
@@ -7,6 +7,7 @@ export function ViewMessages({objMessage}) {
         <p>{objMessage.greeting}</p>
         <p>{objMessage.contendMessage}</p>
       </div>
+      {children}
     </div>
   )
 }

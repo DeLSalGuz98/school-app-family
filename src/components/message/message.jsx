@@ -4,7 +4,7 @@ import './message.css'
 import { IdUserContext } from "../../context/idUserContext"
 import { StudentContext } from "../../context/studentContext"
 import { observer } from "../../services/authFirebase"
-import { getListTeacherForMessage, getListParentsForMessage } from "../../services/getDataFirebase"
+import { getListTeacherForMessage, getListParentsForMessage, getMultipeDataWithCondition } from "../../services/getDataFirebase"
 import { saveData } from "../../services/saveFirebase"
 
 export function Message({}) {
@@ -16,7 +16,7 @@ export function Message({}) {
   const [levelAndSection, setLevelAndSection] = useState({'level':'','section':''})
   const [message, setMessage] = useState({
     'fromUser':'',
-    'fromUserName': `${idUser.name} ${idUser.lastname}`,
+    'fromUserName': `${idUser.name} ${idUser.lastname} - ${idUser.permissions === 'teacher'? 'Docente':idUser.permissions === 'parents'?'P.F.':'Administrador'}`,
     'toUser':'',
     'affair':'',
     'greeting':'',
@@ -45,7 +45,9 @@ export function Message({}) {
   const searchParents = async(e)=>{
     e.preventDefault()
     if(idUser.permissions === 'teacher'){
-      setGreeting(`Saludos Sr. Padre de familia`)
+      if(message.toUser !== 'schoolDirector'){
+        setGreeting(`Saludos Sr. Padre de familia`)
+      }
       const res = await getListParentsForMessage(levelAndSection.level, levelAndSection.section)
       setSelectList(res)
     }
@@ -54,7 +56,9 @@ export function Message({}) {
     const {name, value} = e.currentTarget
     const today = new Date();
     setMessage({...message, [name]:value, 'fromUser': idUser.id, 'greeting':  greeting, 'statusMessage': 'n', 'dateMessage':today})
-
+    if (value === 'schoolDirector'){
+      setGreeting(`Saludos Sr(a). Director(a)`)
+    }
   }
   const sendMessage = async(e)=>{
     e.preventDefault()
@@ -64,6 +68,19 @@ export function Message({}) {
       alert('mensaje enviado satisfactoriamente')
     }else{
       alert('Sucedio un error, porfavor intentelo nuevamente')
+    }
+  }
+  const selectTypeUser = async(e)=>{
+    const {value} = e.currentTarget
+    console.log(value)
+    if(idUser.permissions === 'admin'){
+      const res = await getMultipeDataWithCondition('user', 'permissions', '==', value)
+      setSelectList(res)
+      if(value === 'parents'){
+        setGreeting(`Saludos estimado Padre de Familia`)
+      }else if(value === 'teacher'){
+        setGreeting(`Saludos estimado Docente`)
+      }
     }
   }
   return(
@@ -94,6 +111,15 @@ export function Message({}) {
           </div>
           <input className="btnMessage" type="submit" value="Establecer grado y seccion" />
         </form>
+        :idUser.permissions === 'admin'?
+        <div className="selectContainer">
+            <label className="selectLabel" htmlFor="typeUser">Tipo de usuario</label>
+            <select className="selectInput" name="typeUser" id="typeUser" defaultValue="" onChange={selectTypeUser} required>
+              <option value="" disabled> -Seleccione uno- </option>
+              <option value="teacher">Docente</option>
+              <option value="parents">Padre de Familia</option>
+            </select>
+          </div>
         :<></>
       }
       <form className="newMessageForm" onSubmit={sendMessage}>
@@ -103,12 +129,19 @@ export function Message({}) {
           <select className="selectInput" name="toUser" id="listTo" defaultValue={''} onChange={handleMessage} disabled={disabledInput}>
             <option value="" disabled> -Seleccione al Receptor- </option>
             {
+              idUser.permissions !== 'admin'?
+              <option value={'schoolDirector'}>Direccion</option>
+              :<></>
+            }
+            {
               selectList.map(e=>{
                 if(idUser.permissions === 'parents'){
                   return <option key={e.id} value={e.idTeacher}>{e.nameTeacher} - {e.curso}</option>
                 }else if(idUser.permissions === 'teacher'){
                   //nota: en caso del docente lo que muestra es el nombre del estudiante, pero el mensaje se envia al id del padre
                   return <option key={e.id} value={e.parent}>{e.name} {e.lastname}</option>
+                }else if(idUser.permissions === 'admin'){
+                  return <option key={e.id} value={e.id}>{e.name} {e.lastname} - {e.permissions === 'teacher'? 'Docente':'P.F.'}</option>
                 }
               })
             }

@@ -1,4 +1,4 @@
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc, updateDoc } from "firebase/firestore";
 //resources
 import { db } from "../firebase/conection";
 
@@ -17,5 +17,14 @@ export const saveDataId = async (nameCollection, id, data)=>{
     return {'message': 'user created successfully'};
   } catch (error) {
     return error;
+  }
+}
+
+//update doc
+export const updateDocValue = async(collection, idCollection, data)=>{
+  try {
+    await updateDoc(doc(db, collection, idCollection),data)
+  } catch (error) {
+    return(error)
   }
 }

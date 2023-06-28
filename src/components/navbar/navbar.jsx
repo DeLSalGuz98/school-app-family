@@ -57,9 +57,11 @@ export function NavBar(params) {
           </button>
         </div>
         <nav className={`menuContainer ${menuClass}`}>
-          <button className='btnMenu closeMenu' onClick={closeMenu}>
-            <ion-icon name="close-outline"></ion-icon>
-          </button>
+          <div className='btnMenuContainer'>
+            <button className='btnMenu closeMenu' onClick={closeMenu}>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
           <div className='menuHeader'>
             <div className='menuUser'>
               <img className='menuUser-img' src={userSvg} alt="avatar user" />
