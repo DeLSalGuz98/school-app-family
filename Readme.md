@@ -21,9 +21,8 @@ Esta aplicacion web esta desarrollado para la institucion Santa Rosa de Anta, el
 * [x] Registrar los cursos que dicta el docente
 * [x] Visualizar lista de docentes
 * [x] Cambiar los datos según el estudiante (*esto es en en caso el padre de familia tenga mas de un hijo matriculado*)  **prioridad**
-* [ ] Mandar Mensajes
-* [ ] Recibir Mensajes
-* [ ] Responder Mensajes
+* [x] Mandar Mensajes
+* [x] Recibir Mensajes
 
 **_Fecha Fin: 23/06/2023_**
 
